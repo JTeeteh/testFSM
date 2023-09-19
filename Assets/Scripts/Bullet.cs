@@ -5,7 +5,7 @@ public class Bullet : MonoBehaviour
 {
     //Explosion Effect
     public GameObject Explosion;
-
+    
     public float Speed = 50.0f;
     public float LifeTime = 3.0f;
     public int damage = 50;
@@ -13,6 +13,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         Destroy(gameObject, LifeTime);
+        gameObject.tag = "bullet";
     }
 
     void Update()
