@@ -20,9 +20,7 @@ public class SetAttack : StateMachineBehaviour
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
         animator.gameObject.GetComponent<AnimatorFSM>().AttackTimerReset();
-
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

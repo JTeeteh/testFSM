@@ -17,15 +17,15 @@ public class EnemyFSM : MonoBehaviour
     private Transform target;
     public Transform Target {
         get => target;
-        ////
+
         /// The "=>" is a shortcut for 
         /// get { return target; }
-        ///
+
         private set => target = value;
-        ////
+
         /// The "=>" is a shortcut for 
         /// set { target = value; }
-        ///
+
     }
 
     private void OnDrawGizmos()
@@ -35,13 +35,10 @@ public class EnemyFSM : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, 5.0f);
     }
-
-
     private void Start()
     {
         SetTargetWaypoint();
     }
-
     private void Update()
     {
         switch (currentState)
@@ -56,7 +53,6 @@ public class EnemyFSM : MonoBehaviour
                 break;
         }
     }
-
     private void MoveToTarget()
     {
         //Get the rotation that is facing towards the target
@@ -67,7 +63,6 @@ public class EnemyFSM : MonoBehaviour
         //Make our tank move forward since it should already face the target
         transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed);
     }
-
     private void ChaseBehavior()
     {
         Target = player;
@@ -84,7 +79,6 @@ public class EnemyFSM : MonoBehaviour
             currentState = EnemyState.Attack;
         }
     }
-
     private void SetTargetWaypoint()
     {
         //randomize the target position and move towards it
@@ -98,9 +92,8 @@ public class EnemyFSM : MonoBehaviour
         Target = waypoints[randomIndex];
     }
 
-    private void PatrolBehavior()
+    private void PatrolBehavior() //behavior
     {
-        //behaviour
         //Keep track of our distance to the target
         float distanceToTarget = Vector3.Distance(transform.position,
             target.position);

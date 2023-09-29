@@ -8,7 +8,7 @@ public class BillboardToCamera : MonoBehaviour
 
     Quaternion originalRotation;
 
-    void Start()
+    void Start() // for hp visual
     {
         camTransform = GetComponent<Canvas>().worldCamera;
         originalRotation = transform.rotation;

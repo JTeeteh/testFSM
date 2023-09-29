@@ -23,18 +23,14 @@ public class AnimatorFSM : MonoBehaviour
 
     private int HP = 8;
     public GameObject Explosion;
-
-
     void Start()
     {
         animator = GetComponent<Animator>();
         SetWaypoint();
 
-
         turret = gameObject.transform.GetChild(0).transform;
         bulletSpawnPoint = turret.GetChild(0).transform;
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -43,26 +39,15 @@ public class AnimatorFSM : MonoBehaviour
         AttackTimer();
         LifeHandler();
     }
-
     public void MoveTo(Transform target)
     {
-
-
             Quaternion targetRotation = Quaternion.LookRotation(target.position -
     transform.position);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation,
                 rotationSpeed * Time.deltaTime);
             //Make our tank move forward since it should already face the target
             transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed);
-
-
-
-
-
     }
-
-
-
     public void SetWaypoint()
     {
         //randomize the target position and move towards it
@@ -92,7 +77,6 @@ public class AnimatorFSM : MonoBehaviour
             attackmodetimer = 75f;
         }
         animator.SetFloat("AttackTimer",attackmodetimer);
-
     }
 
     public void AttackTimerReset()
@@ -113,29 +97,23 @@ public class AnimatorFSM : MonoBehaviour
             targetRotation = transform.rotation;
         }
 
-
         turret.rotation=  Quaternion.Slerp(transform.GetChild(0).transform.rotation, targetRotation,
             rotationSpeed * Time.deltaTime);
     }
-
-    public void ShootInterval()
+    public void ShootInterval() 
     {
-        shottimer += 5f * Time.deltaTime;
+        shottimer += 100f * Time.deltaTime;//Intended hehe lower | lower the value of 100f for attackspeed.
 
         if (shottimer >= 3f)
         {
             Shoot();
             shottimer = 0;
-
         }
-
     }
-
     private void Shoot()
     {
         Instantiate(bullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
     }
-
     private void LifeHandler()
     {
         transform.GetChild(1).transform.GetChild(1).GetComponent<RectTransform>().localScale = new Vector3( HP /8f, 1, 1);
@@ -146,8 +124,6 @@ public class AnimatorFSM : MonoBehaviour
             Instantiate(Explosion,this.transform.position, Quaternion.identity);
         }    
     }
-
-
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.GetComponent<Bullet>() != null && collision.gameObject.GetComponent<Bullet>() == true)

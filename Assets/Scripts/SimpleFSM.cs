@@ -30,7 +30,6 @@ public class SimpleFSM : MonoBehaviour
     {
         SetTargetWaypoint();
     }
-
     private void Update()
     {
         switch (currentState)
@@ -49,7 +48,6 @@ public class SimpleFSM : MonoBehaviour
                 break;
         }
     }
-
     private void SetTargetWaypoint()
     {
         //Set a random waypoint from the array
@@ -60,7 +58,6 @@ public class SimpleFSM : MonoBehaviour
         //finalize the waypoint
         currentWaypoint = waypoints[randomIndex];
     }
-
     private void PatrolBehaviour()
     {
         #region Behaviour
@@ -124,7 +121,6 @@ public class SimpleFSM : MonoBehaviour
             currentState = State.Chase;
         #endregion
     }
-
     private void DeadBehaviour()
     {
 
